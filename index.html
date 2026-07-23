@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Examen ISO/IEC — Calidad y Pruebas de Software</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-mark">ISO/IEC</span>
+      <span class="brand-sub">Examen de Calidad y Pruebas de Software</span>
+    </div>
+    <div id="timer" class="timer hidden" aria-live="polite">30:00</div>
+  </header>
+
+  <main class="container">
+
+    <!-- ============ PANTALLA 1: REGISTRO ============ -->
+    <section id="screen-registro" class="screen">
+      <h1>Registro del participante</h1>
+      <p class="lead">
+        Este examen evalúa tus conocimientos sobre las normas
+        <strong>ISO/IEC 25010, 25023, 25040</strong> e
+        <strong>ISO/IEC/IEEE 29119</strong> y <strong>24765</strong>.
+        Son 25 preguntas de opción múltiple y tienes un máximo de <strong>30 minutos</strong>.
+        Al terminar recibirás tu resultado y un PDF descargable.
+      </p>
+
+      <form id="form-registro" novalidate>
+        <div class="field">
+          <label for="nombre">Nombre completo</label>
+          <input type="text" id="nombre" name="nombre" autocomplete="name" required />
+          <small class="error" data-for="nombre"></small>
+        </div>
+        <div class="field">
+          <label for="puesto">Puesto</label>
+          <input type="text" id="puesto" name="puesto" autocomplete="organization-title" required />
+          <small class="error" data-for="puesto"></small>
+        </div>
+        <div class="field">
+          <label for="correo">Correo electrónico</label>
+          <input type="email" id="correo" name="correo" autocomplete="email" required />
+          <small class="error" data-for="correo"></small>
+        </div>
+
+        <div class="note">
+          Tus datos no se envían a ningún servidor: se usan solo en tu navegador para
+          personalizar el examen y el PDF de resultados.
+        </div>
+
+        <button type="submit" class="btn btn-primary">Comenzar examen</button>
+      </form>
+    </section>
+
+    <!-- ============ PANTALLA 2: EXAMEN ============ -->
+    <section id="screen-examen" class="screen hidden">
+      <div class="exam-head">
+        <div class="progress-info">
+          Pregunta <span id="q-actual">1</span> de <span id="q-total">25</span>
+        </div>
+        <div class="progress-bar"><div id="progress-fill" class="progress-fill"></div></div>
+      </div>
+
+      <div id="pregunta-container" class="pregunta-container"><!-- render dinámico --></div>
+
+      <div class="exam-nav">
+        <button id="btn-anterior" class="btn btn-ghost">Anterior</button>
+        <button id="btn-siguiente" class="btn btn-primary">Siguiente</button>
+        <button id="btn-finalizar" class="btn btn-primary hidden">Finalizar y ver resultado</button>
+      </div>
+      <div id="unanswered-note" class="unanswered-note hidden"></div>
+    </section>
+
+    <!-- ============ PANTALLA 3: RESULTADOS ============ -->
+    <section id="screen-resultados" class="screen hidden">
+      <div id="resultado-resumen" class="resultado-resumen"><!-- render dinámico --></div>
+
+      <div class="resultado-acciones">
+        <button id="btn-descargar-pdf" class="btn btn-primary">Descargar PDF</button>
+        <button id="btn-reiniciar" class="btn btn-ghost">Realizar de nuevo</button>
+      </div>
+
+      <h2 class="revision-titulo">Revisión de respuestas</h2>
+      <div id="revision-container" class="revision-container"><!-- render dinámico --></div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <span>Examen ISO/IEC — sin base de datos, tus datos permanecen en tu navegador.</span>
+  </footer>
+
+  <script src="vendor/jspdf.umd.min.js"></script>
+  <script src="questions.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
